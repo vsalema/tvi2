@@ -1,34 +1,38 @@
-<!doctype html>
-<html lang="fr">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title></title>
-<style>
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden; /* Prevents scrollbars on the main page */
-}
-
-iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none; /* Removes the default iframe border */
-}
-</style>
+<html>
+ <head>
+ <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 </head>
 <body>
- 
-<iframe src="https://vsalema.github.io/tvi/"  scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay;" allowtransparency="true"> </iframe>
+
+
+
+<video width="100%" height="333" poster="https://upload.wikimedia.org/wikipedia/commons/2/24/Log%C3%B3tipo_TVI.png" id="video" controls></video>
+<script>
+        if(Hls.isSupported()) {
+          var video = document.getElementById('video');
+          var hls = new Hls({
+              debug: true,
+			  enableWorker: true,
+			  lowLatencyMode: true,
+			  backBufferLength: 90
+          });
+          hls.loadSource('https://raw.githubusercontent.com/ipstreet312/freeiptv/master/ressources/tvipt/sh/tvi.m3u8');
+          hls.attachMedia(video);
+          hls.on(Hls.Events.MEDIA_ATTACHED, function() {
+            video.muted = false;
+            video.play();
+        });
+       }
+       // hls.js is not supported on platforms that do not have Media Source Extensions (MSE) enabled.
+       // When the browser has built-in HLS support (check using `canPlayType`), we can provide an HLS manifest (i.e. .m3u8 URL) directly to the video element throught the `src` property.
+       // This is using the built-in support of the plain video element, without using hls.js.
+        else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+          video.src = 'https://raw.githubusercontent.com/ipstreet312/freeiptv/master/ressources/tvipt/sh/tvi.m3u8';
+          video.addEventListener('canplay',function() {
+            video.play();
+          });
+        }
+      </script>
 
 </body>
 </html>
-
-
-
-
