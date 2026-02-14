@@ -1,4 +1,3 @@
-
 <html>
  <head>
  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
@@ -17,7 +16,7 @@
 			  lowLatencyMode: true,
 			  backBufferLength: 90
           });
-          hls.loadSource('https://video-auth6.iol.pt/live_tvi/live_tvi/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Mi8xMi8yMDI2IDg6MTU6MjkgUE0maGFzaF92YWx1ZT0yRVNvNXZPRWxXSGlmUkwvdkx5MEJnPT0mdmFsaWRtaW51dGVzPTE0NDAmaWQ9YjVjYmZhOWUtMjg1OS00N2ZhLWI4ZTQtYmVkZTA2NmZhM2Iw/');
+          hls.loadSource('https://raw.githubusercontent.com/LITUATUI/M3UPT/refs/heads/main/M3U/TVI.m3u');
           hls.attachMedia(video);
           hls.on(Hls.Events.MEDIA_ATTACHED, function() {
             video.muted = false;
@@ -28,7 +27,7 @@
        // When the browser has built-in HLS support (check using `canPlayType`), we can provide an HLS manifest (i.e. .m3u8 URL) directly to the video element throught the `src` property.
        // This is using the built-in support of the plain video element, without using hls.js.
         else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-          video.src = 'https://video-auth6.iol.pt/live_tvi/live_tvi/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Mi8xMi8yMDI2IDg6MTU6MjkgUE0maGFzaF92YWx1ZT0yRVNvNXZPRWxXSGlmUkwvdkx5MEJnPT0mdmFsaWRtaW51dGVzPTE0NDAmaWQ9YjVjYmZhOWUtMjg1OS00N2ZhLWI4ZTQtYmVkZTA2NmZhM2Iw/';
+          video.src = 'https://raw.githubusercontent.com/LITUATUI/M3UPT/refs/heads/main/M3U/TVI.m3u';
           video.addEventListener('canplay',function() {
             video.play();
           });
@@ -37,4 +36,6 @@
 
 </body>
 </html>
+
+
 
